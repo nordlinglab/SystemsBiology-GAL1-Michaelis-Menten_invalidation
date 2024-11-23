@@ -58,16 +58,14 @@ set(gcf, 'PaperSize', [25.7,9.8]); %[18.1,9.9][25.8,9.8]
 hold off
 
 %Save figure as PDF
-% Fig = ['/Users/chen/Desktop/Td0_',set_num,'_',ModelName,'_',SetName,'_',i,'_valid.pdf'];
-% print(gcf,Fig,'-dpdf','-r300')
 chari = string(i);
 ith = num2str(i);
 figfile = string([set_num, ModelName, SetName, chari]);
 FigFile = char(join(figfile,'_'));
-Fig = ['/Users/chen/Desktop/Td0_',FigFile,'_valid.fig'];
+Fig = ['/Users/username/Desktop/Td0_',FigFile,'_valid.fig'];
 savefig(Fig)
 
-FigPdf = ['/Users/chen/Desktop/Td0_',FigFile,'_valid.pdf'];
+FigPdf = ['/Users/username/Desktop/Td0_',FigFile,'_valid.pdf'];
 print(gcf,FigPdf,'-dpdf','-r300')
 
 % Record results

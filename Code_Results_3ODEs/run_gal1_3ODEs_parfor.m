@@ -9,8 +9,8 @@ pause(1)
 
 Td = 0; % system delay
 
-load('ZAD4_Mean_Norm2CI_smoothed.mat');
-load('GuessSet50.mat')
+load('Datasets_ZAD4.mat');
+load('GuessSet50_3ODEs.mat')
 num_set = length(GuessSet);
 
 setNames = {'nd032','nd039','nd053','nd057'};
@@ -67,11 +67,12 @@ poolobj = gcp('nocreate');
 if isempty(poolobj)
     parpool();  % Create a parallel pool
 end
-addAttachedFiles(gcp, '/home/raychen/Desktop/MATLAB/AMIGO2_R2019b/ToServerVersion/');
+addAttachedFiles(gcp, '/home/username/Desktop/MATLAB/AMIGO2_R2019b/');
 
 %%
 parfor i = 1:num_set
     inputs_copy = inputs;
+
     if GuessSet{1,i}(14) > GuessSet{1,i}(2) || GuessSet{1,i}(13) > GuessSet{1,i}(1)
         continue
     end
@@ -176,7 +177,7 @@ parfor i = 1:num_set
     Record1000ic = struct('y_m',Ally_m_tempRec, 'y_simuli',AllY_simuli_tempRec, 'residual',AllResidual_tempRec,...
         'Record',setRecord_tempRec,'FIT',AllFIT_tempRec, 'ExceedRate',setExceedRate_tempRec,...
         'par_guess',Allpar_guess_tempRec, 'par_results',Allpar_results_tempRec, 'par_dist',Allpar_dist_tempRec);
-    File = ['/home/raychen/Desktop/MATLAB/AMIGO2_R2019b/Results/',ResultFolder,'/Record1000ic_',ith,'.mat'];
+    File = ['/home/username/Desktop/MATLAB/AMIGO2_R2019b/Results/',ResultFolder,'/Record1000ic_',ith,'.mat'];
     parsave(File, Record1000ic)
     disp('Record Saved')  
 end
